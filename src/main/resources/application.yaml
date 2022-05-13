@@ -1,0 +1,36 @@
+server:
+  port: 8803
+spring:
+  application:
+    name: notification-tracker
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+      write-dates-as-timestamps: false
+    deserialization:
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+  data:
+    mongodb:
+      host: 10.199.100.13
+      port: 27017
+      username: mongodb
+      password: mongodb
+      authentication-database: admin
+      database: notification_tracker
+
+#management:
+#  endpoint:
+#    prometheus:
+#      enabled: true
+#    metrics:
+#      enabled: true
+#  metrics:
+#    export:
+#      prometheus:
+#        enabled: true
+#        pushgateway:
+#          enabled: true
+#  endpoints:
+#    web:
+#      exposure:
+#        include: health, info, prometheus, metrics
