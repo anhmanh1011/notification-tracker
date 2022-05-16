@@ -1,4 +1,4 @@
-package com.example.notificationtracker.entity;
+package com.kss.notificationtracker.entity;
 
 import lombok.Builder;
 import lombok.Data;

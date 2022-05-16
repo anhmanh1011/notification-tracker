@@ -1,6 +1,13 @@
 server:
   port: 8803
 spring:
+  kafka:
+    consumer:
+      group-id: notification_tracker
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: com.kss.notificationtracker.utils.NotificationDeserializer
+    bootstrap-servers: 10.199.100.13:9092
   application:
     name: notification-tracker
   jackson:

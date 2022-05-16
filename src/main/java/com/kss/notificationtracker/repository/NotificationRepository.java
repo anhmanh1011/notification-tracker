@@ -1,6 +1,6 @@
-package com.example.notificationtracker.repository;
+package com.kss.notificationtracker.repository;
 
-import com.example.notificationtracker.entity.NotificationEntity;
+import com.kss.notificationtracker.entity.NotificationEntity;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;

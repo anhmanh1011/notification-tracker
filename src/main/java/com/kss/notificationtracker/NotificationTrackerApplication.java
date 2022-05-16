@@ -1,4 +1,4 @@
-package com.example.notificationtracker;
+package com.kss.notificationtracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
