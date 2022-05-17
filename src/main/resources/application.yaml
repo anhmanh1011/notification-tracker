@@ -1,5 +1,5 @@
 server:
-  port: 8803
+  port: 8804
 spring:
   kafka:
     consumer:
@@ -16,28 +16,21 @@ spring:
       write-dates-as-timestamps: false
     deserialization:
       FAIL_ON_UNKNOWN_PROPERTIES: false
-  data:
-    mongodb:
-      host: 10.199.100.13
-      port: 27017
-      username: mongodb
-      password: mongodb
-      authentication-database: admin
-      database: notification_tracker
+  datasource:
+    hikari:
+      maxLifetime: '2000000'
+      connectionTimeout: '30000'
+      minimumIdle: '50'
+      poolName: HikariPoolUserManagementService
+      idleTimeout: '30000'
+      maximumPoolSize: '500'
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: user_management
+    password: bTUEp4d4JrS5vNAe
+    url: jdbc:mariadb://10.199.200.7:3306,10.199.200.8:3306,10.199.200.9:3306:3306/user_management?autoReconnect=true
+  jpa:
+    show-sql: true
 
-#management:
-#  endpoint:
-#    prometheus:
-#      enabled: true
-#    metrics:
-#      enabled: true
-#  metrics:
-#    export:
-#      prometheus:
-#        enabled: true
-#        pushgateway:
-#          enabled: true
-#  endpoints:
-#    web:
-#      exposure:
-#        include: health, info, prometheus, metrics
+logging:
+  level:
+    root: debug
