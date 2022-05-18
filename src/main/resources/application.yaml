@@ -1,6 +1,13 @@
 server:
   port: 8804
 spring:
+  redis:
+    database: 0
+    host: 10.199.100.9
+    port: 6379
+    timeout: 60000
+    password: yqlhFMwPb1Wm50es
+
   kafka:
     consumer:
       group-id: notification_tracker
@@ -20,16 +27,25 @@ spring:
     hikari:
       maxLifetime: '2000000'
       connectionTimeout: '30000'
-      minimumIdle: '50'
+      minimumIdle: '20'
       poolName: HikariPoolUserManagementService
       idleTimeout: '30000'
-      maximumPoolSize: '500'
+      maximumPoolSize: '50'
     driver-class-name: org.mariadb.jdbc.Driver
     username: user_management
     password: bTUEp4d4JrS5vNAe
     url: jdbc:mariadb://10.199.200.7:3306,10.199.200.8:3306,10.199.200.9:3306:3306/user_management?autoReconnect=true
   jpa:
-    show-sql: true
+    show-sql: false
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 100
+          batch_versioned_data: true
+        order_updates: true
+        order_inserts: true
+        dialect: org.hibernate.dialect.MariaDB102Dialect
+
 
 logging:
   level:

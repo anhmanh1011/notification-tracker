@@ -27,7 +27,7 @@ public class UserNotificationEntity {
     private String notificationId;
     @Basic
     @Column(name = "is_read")
-    private Integer isRead;
+    private Boolean isRead;
     @Basic
     @Column(name = "create_time")
     private LocalDateTime createTime;

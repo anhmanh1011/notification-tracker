@@ -1,6 +1,9 @@
 package com.kss.notificationtracker.repository;
 
 import com.kss.notificationtracker.entity.UserNotificationEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UserNotificationEntityRepository extends org.springframework.data.jpa.repository.JpaRepository<UserNotificationEntity, String> {
+@Repository
+public interface UserNotificationEntityRepository extends JpaRepository<UserNotificationEntity, String> {
 }

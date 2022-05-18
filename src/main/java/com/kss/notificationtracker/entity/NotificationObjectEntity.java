@@ -6,9 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
 @Table(name = "notification_object", schema = "user_management")
@@ -17,7 +15,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NotificationObjectEntity {
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
     private String id;
@@ -30,6 +28,11 @@ public class NotificationObjectEntity {
     @Basic
     @Column(name = "url")
     private String url;
+
+    @Basic
+    @Column(name = "type")
+    private String type;
+
     @Basic
     @Column(name = "create_time")
     private LocalDateTime createTime;

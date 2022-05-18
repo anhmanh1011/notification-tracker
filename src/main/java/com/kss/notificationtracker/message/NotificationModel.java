@@ -24,14 +24,19 @@ public class NotificationModel implements Serializable {
     String user;
     List<String> listUser;
     String topic;
-    ProviderType providerType;
     MessageType messageType;
+    ProviderType providerType;
+    SendType sendType;
 
     public enum ProviderType {
         FIRE_BASE, SMS, EMAIL
     }
 
-    public enum MessageType {
+    public enum SendType {
         TOPIC, SINGLE, MULTICAST
+    }
+
+    public enum MessageType{
+        QC, ACCOUNT, PAYMENT
     }
 }
