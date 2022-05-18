@@ -40,10 +40,10 @@ spring:
     properties:
       hibernate:
         jdbc:
-          batch_size: 100
+          batch_size: 500
           batch_versioned_data: true
-        order_updates: true
-        order_inserts: true
+#        order_updates: true
+#        order_inserts: true
         dialect: org.hibernate.dialect.MariaDB102Dialect
 
 

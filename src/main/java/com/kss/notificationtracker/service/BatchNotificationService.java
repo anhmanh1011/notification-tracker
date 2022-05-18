@@ -48,6 +48,7 @@ public class BatchNotificationService {
                 counter++;
             }
         } catch (Exception e) {
+
             e.printStackTrace();
             log.error(e.getMessage());
         }
