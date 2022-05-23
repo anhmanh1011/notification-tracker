@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +28,7 @@ public class NotificationModel implements Serializable {
     MessageType messageType;
     ProviderType providerType;
     SendType sendType;
-
+    LocalDateTime time;
     public enum ProviderType {
         FIRE_BASE, SMS, EMAIL
     }

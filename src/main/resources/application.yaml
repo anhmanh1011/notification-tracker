@@ -7,7 +7,14 @@ spring:
     port: 6379
     timeout: 60000
     password: yqlhFMwPb1Wm50es
-
+  data:
+    mongodb:
+      host: 10.199.100.13
+      port: 27017
+      username: mongodb
+      password: mongodb
+      authentication-database: admin
+      database: notification_tracker
   kafka:
     consumer:
       group-id: notification_tracker
@@ -37,14 +44,6 @@ spring:
     url: jdbc:mariadb://10.199.200.7:3306,10.199.200.8:3306,10.199.200.9:3306:3306/user_management?autoReconnect=true
   jpa:
     show-sql: false
-    properties:
-      hibernate:
-        jdbc:
-          batch_size: 500
-          batch_versioned_data: true
-#        order_updates: true
-#        order_inserts: true
-        dialect: org.hibernate.dialect.MariaDB102Dialect
 
 
 logging:
