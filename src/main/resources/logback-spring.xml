@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty scope="context" name="serverName" source="HOSTNAME"/>
+    <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+    <springProperty scope="context" name="parentFolderLog" source="logs.path"/>
+    <Property name="fileName" value="${springAppName}"/>
+    <Property name="logPattern" value="%d{yyyy-MM-dd HH:mm:ss} %p %C %m%n" />
+    <!-- This is console appender -->
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>${logPattern}</Pattern>
+        </layout>
+    </appender>
+
+    <appender name="ASYNC_STDOUT"
+              class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold> <!-- default 20, means drop lower event when has 20% capacity remaining -->
+        <appender-ref ref="STDOUT" />
+        <queueSize>256</queueSize> <!-- default 256 -->
+        <includeCallerData>false</includeCallerData><!-- default false -->
+        <neverBlock>false</neverBlock><!-- default false, set to true to cause
+            the Appender not block the application and just drop the messages -->
+    </appender>
+
+    <!-- This is roling file appender class="ch.qos.logback.classic.AsyncAppender"-->
+    <appender name="FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${parentFolderLog}/${fileName}.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>${logPattern}</Pattern>
+        </encoder>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily and when the file reaches 10 MegaBytes -->
+            <fileNamePattern>${parentFolderLog}/backup/${fileName}-%d{yyyy-MM-dd}.%i.log.gz
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+    <appender name="ASYNC_FILE"
+              class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold> <!-- default 20, means drop lower event when has 20% capacity remaining -->
+        <appender-ref ref="FILE" />
+        <queueSize>256</queueSize> <!-- default 256 -->
+        <includeCallerData>false</includeCallerData><!-- default false -->
+        <neverBlock>false</neverBlock><!-- default false, set to true to cause
+            the Appender not block the application and just drop the messages -->
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="ASYNC_STDOUT"/>
+        <appender-ref ref="ASYNC_FILE" />
+    </root>
+
+    <logger name="com.kss" additivity="false" level="TRACE">
+        <appender-ref ref="ASYNC_STDOUT" />
+        <appender-ref ref="ASYNC_FILE" />
+    </logger>
+</configuration>
