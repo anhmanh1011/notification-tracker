@@ -49,3 +49,19 @@ spring:
 logging:
   level:
     root: debug
+management:
+  endpoint:
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+        pushgateway:
+          enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus, metrics
