@@ -2,10 +2,10 @@ package com.kss.notificationtracker.event;
 
 import com.kss.notificationtracker.entity.NotificationEntity;
 import com.kss.notificationtracker.entity.NotificationItemEntity;
-import com.kss.notificationtracker.entity.redis.TopicEntity;
+import com.kss.notificationtracker.entity.redis.UserTopicCacheEntity;
 import com.kss.notificationtracker.message.NotificationModel;
 import com.kss.notificationtracker.repository.NotificationRepository;
-import com.kss.notificationtracker.repository.redis.TopicRepository;
+import com.kss.notificationtracker.repository.redis.UserTopicCacheRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -34,7 +34,7 @@ public class HandlerEvent {
     NotificationRepository notificationRepository;
 
     @Autowired
-    TopicRepository topicRepository;
+    UserTopicCacheRepository userTopicCacheRepository;
 
     @Autowired
     MongoTemplate mongoTemplate;
@@ -89,10 +89,10 @@ public class HandlerEvent {
     public void processTopic(NotificationModel notificationModel) throws Exception {
         System.out.println(notificationModel);
 
-        Optional<TopicEntity> optionalTopicEntity = topicRepository.findById(notificationModel.getTopic());
+        Optional<UserTopicCacheEntity> optionalTopicEntity = userTopicCacheRepository.findById(notificationModel.getTopic());
         if (optionalTopicEntity.isPresent()) {
-            TopicEntity topicEntity = optionalTopicEntity.get();
-            List<NotificationEntity> notificationEntityList = buildListNotificationCollection(notificationModel, topicEntity.getListUser());
+            UserTopicCacheEntity topicEntity = optionalTopicEntity.get();
+            List<NotificationEntity> notificationEntityList = buildListNotificationCollection(notificationModel, topicEntity.getUsers());
             mongoTemplate.insertAll(notificationEntityList);
 
         } else {

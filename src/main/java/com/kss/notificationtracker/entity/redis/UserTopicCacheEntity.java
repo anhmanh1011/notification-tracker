@@ -9,14 +9,17 @@ import org.springframework.data.redis.core.RedisHash;
 
 import java.util.List;
 
-@RedisHash(value = "TopicNotifyEntity", timeToLive = 60*60*24) // 24h
+@RedisHash(value = "user_topic") // 24h
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TopicEntity {
-    private static final long serialVersionUID = 1708925807375596799L;
+public class UserTopicCacheEntity {
+    private static final long serialVersionUID = 1708925807375596791L;
+
     @Id
-    String id;
-    List<String> listUser;
+    String topicName;
+
+    List<String> users;
+
 }
