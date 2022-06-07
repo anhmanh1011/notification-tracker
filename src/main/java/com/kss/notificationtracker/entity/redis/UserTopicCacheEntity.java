@@ -9,7 +9,7 @@ import org.springframework.data.redis.core.RedisHash;
 
 import java.util.List;
 
-@RedisHash(value = "user_topic") // 24h
+@RedisHash(value = "user_topic",timeToLive = 60*60*24*14)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

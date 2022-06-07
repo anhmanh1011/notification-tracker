@@ -28,7 +28,7 @@ public class HandlerEvent {
 
 //    public static final String TOPIC_HANDLER = "push-notification-handler";
 
-    public static final String TOPIC_HANDLER = "push-notification-handler3";
+    public static final String TOPIC_HANDLER = "push-notification-handler4";
 
     @Autowired
     NotificationRepository notificationRepository;
@@ -103,6 +103,7 @@ public class HandlerEvent {
     }
 
     private List<NotificationEntity> buildListNotificationCollection(NotificationModel notificationModel, List<String> listUser) {
+        listUser.forEach(System.out::println);
         return
                 listUser.stream().map(s -> NotificationEntity.builder()
                         .id(UUID.randomUUID().toString())
